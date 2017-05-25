@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        <h:form>
+            <p:messages id="mensajes" autoUpdate="false" showDetail="true" showSummary="true" severity="info,fatal"/>
+            <p:fieldset legend="Datos personales">
+              
+                <h:panelGrid id="pgpersonal">
+                <p:outputLabel value="Nombres"/>
+                <p:inputText id="name" value="#{userController.person.name}" required="true" validatorMessage="Ingrese el nombre"/>
+                <p:message for="name"/>
+                <p:outputLabel value="Apellidos"/>
+                <p:inputText id="surname" value="#{userController.person.surname}" required="true"/>
+                <p:message for="surname"/>
+                <p:selectOneRadio id="gender" value="#{userController.person.genre}" required="true">
+                    <f:selectItem itemLabel="Masculino" itemValue="M"></f:selectItem>
+                    <f:selectItem itemLabel="Femenino" itemValue="F"></f:selectItem>
+                </p:selectOneRadio>
+                <p:message for="gender"/>
+                <p:outputLabel value="Fecha"/>
+                <p:calendar value="#{userController.person.birthDate}"/>
+                </h:panelGrid>
+            </p:fieldset>
+            <p:fieldset legend="Datos cuenta">
+                <p:outputLabel value="Tipo"/>
+                                    <p:selectOneMenu id="cmbType" value="#{userController.user.type}" required="true">
+                    <f:selectItem itemLabel="Administrador" itemValue="A"></f:selectItem>
+                    <f:selectItem itemLabel="Operario" itemValue="O"></f:selectItem>
+                </p:selectOneMenu>
+                <h:panelGrid id="pgcuenta">
+                <p:outputLabel value="Usuario"/>
+                <p:inputText id="users" value="#{userController.user.user}" required="true"/>
+                <p:message for="users"/>
+                <p:outputLabel value="Contraseña"/>
+                <p:password  id="pass1" value="#{userController.user.pass}" required="true" match="pass2" validatorMessage="No coinciden" weakLabel="Debil" strongLabel="Fuerte"/>
+                <p:message for="pass1"/>
+                <p:outputLabel value="Contraseña"/>
+                <p:password id="pass2"/>
+                <p:commandButton value="Registrar" ajax="false" update="pgcuenta,pgpersonal,mensajes" actionListener="#{userController.registrar()}"/>
+                </h:panelGrid>
+            </p:fieldset>
+        </h:form>
+    </body>
+</html>
