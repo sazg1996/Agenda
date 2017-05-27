@@ -40,7 +40,7 @@ public class IndexController implements Serializable{
     public void setUser(User user) {
         this.user = user;
     }
-    public String IniciarSesion()
+    public String IniciarSesion() throws Exception
     {
         User us=null;
         String redirect="";
@@ -49,7 +49,8 @@ public class IndexController implements Serializable{
             if(us!=null)
             {
                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user",us);
-                redirect="/Folder/Main";
+                redirect="/Folder/Main?faces-redirect=true";
+             
 
             }
             else
@@ -59,7 +60,9 @@ public class IndexController implements Serializable{
             
             
         } catch (Exception e) {
+            
              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Falló"));
+             throw  e;
         }
         return  redirect;
     }
