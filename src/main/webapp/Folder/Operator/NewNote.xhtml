@@ -8,28 +8,27 @@
 
     <body>
 
-        <ui:composition template="./../templates/Template.xhtml">
+        <ui:composition template="../../templates/Template.xhtml">
 
-            <ui:define name="content">
-                     <h2>Nueva Nota</h2>
-                
-                <h:form>
+                    <ui:define name="content">
+              <h:form>
+                      
                     <p:messages autoUpdate="true" showDetail="true" showSummary="false"/>
                     
                     <h:panelGrid columns="2" >
                         <p:outputLabel for="cboCategoria" value="Categoria" />
-                        <p:selectOneMenu id="cboCategoria" value="#{notaController.categoria.codigo}">
-                            <f:selectItems value="#{notaController.categorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat.codigo}" />
+                        <p:selectOneMenu id="cboCategoria" value="#{noteController.category.code}">
+                            <f:selectItems value="#{noteController.category}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat.code}" />
                         </p:selectOneMenu>
                         
                         <p:outputLabel for="txtEncabezado" value="Encabezado" />
-                        <p:inputText id="txtEncabezado" value="#{notaController.nota.encabezado}"/>
+                        <p:inputText id="txtEncabezado" value="#{noteController.note.header}"/>
                         
                         <p:outputLabel for="txtCuerpo" value="Contenido" />
-                        <p:inputTextarea id="txtCuerpo" value="#{notaController.nota.cuerpo}"/>
+                        <p:inputTextarea id="txtCuerpo" value="#{noteController.note.body}"/>
                         
                         <h:column />
-                        <p:commandButton value="Registrar" actionListener="#{notaController.registrar()}"/>
+                        <p:commandButton value="Registrar" actionListener="#{noteController.registrar()}"/>
                     </h:panelGrid>
                 </h:form>
             </ui:define>

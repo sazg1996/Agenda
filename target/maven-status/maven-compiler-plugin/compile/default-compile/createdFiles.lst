@@ -2,6 +2,7 @@ com\mycompany\model\Person.class
 com\mycompany\controller\MenuController.class
 com\mycompany\ejb\NoteFacade.class
 com\mycompany\model\Person_.class
+com\mycompany\controller\NoteController.class
 com\mycompany\ejb\NoteFacadeLocal.class
 com\mycompany\ejb\PersonFacade.class
 com\mycompany\ejb\CategoryFacadeLocal.class

@@ -17,7 +17,7 @@
     <h:body>
 
         <div id="top">
-            <ui:insert name="top"></ui:insert>
+            <ui:insert name="top">
             <h:form>
            
                <p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px">
@@ -51,8 +51,8 @@
     <p:submenu label="Nota" icon="ui-icon-contact">
         <p:column>
             <p:submenu label="Tech.1">
-                <p:menuitem value="Nuevo" url="../Operator/NewNote" />
-                <p:menuitem value="Bsucar" url="../Operator/LookforNotes" />
+                <p:menuitem value="Nuevo" url="/Folder/Operator/NewNote.xhtml" />
+                <p:menuitem value="Bsucar" url="/Folder/Operator/LookforNotes.xhtml" />
             </p:submenu>
             <p:submenu label="Tech.2">
                 <p:menuitem value="Tech.2.1" url="#" />
@@ -74,8 +74,9 @@
                               <p:commandButton actionListener="#{menuController.cerrarSesion()}" icon="ui-icon-power" action="/index?faces-redirect=true" title="Cerrar Sesión"/>                            
                         </f:facet> 
 </p:megaMenu>
-              
+             
             </h:form>
+                 </ui:insert>
         </div>
 
         <div id="content" class="center_content">

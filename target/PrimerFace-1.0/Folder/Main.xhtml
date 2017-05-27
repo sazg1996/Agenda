@@ -1,14 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../templates/Template.xhtml">
 
             <ui:define name="content">
-              
+              <h:form>
+                      
+                    <p:messages autoUpdate="true" showDetail="true" showSummary="false"/>
+                    
+                    <h:panelGrid columns="2" >
+                        <p:outputLabel for="cboCategoria" value="Categoria" />
+                        <p:selectOneMenu id="cboCategoria" value="#{noteController.category.code}">
+                            <f:selectItems value="#{noteController.category}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat.code}" />
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel for="txtEncabezado" value="Encabezado" />
+                        <p:inputText id="txtEncabezado" value="#{noteController.note.header}"/>
+                        
+                        <p:outputLabel for="txtCuerpo" value="Contenido" />
+                        <p:inputTextarea id="txtCuerpo" value="#{noteController.note.body}"/>
+                        
+                        <h:column />
+                        <p:commandButton value="Registrar" actionListener="#{noteController.registrar()}"/>
+                    </h:panelGrid>
+                </h:form>
             </ui:define>
 
         </ui:composition>

@@ -18,11 +18,11 @@ import javax.ejb.Local;
 @Local
 public interface NoteFacadeLocal {
 
-    void create(Note nota);
+    void create(Note note);
 
-    void edit(Note nota);
+    void edit(Note note);
 
-    void remove(Note nota);
+    void remove(Note note);
 
     Note find(Object id);
 
@@ -32,6 +32,6 @@ public interface NoteFacadeLocal {
 
     int count();      
     
-    List<Note> buscar(int codigoPersona, int codigoCategoria, Date fechaConsulta) throws Exception;
+    List<Note> Lookfor(int codigoPersona, int codigoCategoria, Date fechaConsulta) throws Exception;
 }
 
