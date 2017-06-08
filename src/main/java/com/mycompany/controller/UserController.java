@@ -63,6 +63,12 @@ public class UserController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Falló"));
         }
     }
+    
+    public String mostrarUsuarioLogueado()
+    {
+       return  ((User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user")).getUser();
+          
+    }
 
 
 }

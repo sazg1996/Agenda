@@ -15,24 +15,24 @@
                    <h:form>
                     <h:panelGrid columns="5" >
                         <p:outputLabel for="cal" value="Fecha" />
-                        <p:calendar id="cal" locale="es" required="true" value="#{buscarController.fechaConsulta}" pattern="dd/MM/yyyy"/>
+                        <p:calendar id="cal" locale="es" required="true" value="#{lookupController.dateConsult}" pattern="dd/MM/yyyy"/>
 
                         <p:outputLabel for="cboCategoria" value="Categoria" />
-                        <p:selectOneMenu id="cboCategoria" required="true" value="#{buscarController.codigoCategoria}">
-                            <f:selectItems value="#{buscarController.listaCategorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat.codigo}" />
+                        <p:selectOneMenu id="cboCategoria" required="true" value="#{lookupController.codCat}">
+                            <f:selectItems value="#{lookupController.categories}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat.code}" />
                             <f:selectItem itemLabel="SELECCIONE" itemValue="#{null}" noSelectionOption="true" />                            
                         </p:selectOneMenu>
 
-                        <p:commandButton icon="ui-icon-search" value="Buscar" update="grid" actionListener="#{buscarController.buscar()}"/>
+                        <p:commandButton icon="ui-icon-search" value="Buscar" update="grid" actionListener="#{lookupController.LookUP()}"/>
                     </h:panelGrid>
 
-                    <p:dataGrid id="grid" value="#{buscarController.listaNotas}" var="nota">
-                        <p:panel header="#{nota.categoria.nombre}" >
+                       <p:dataGrid id="grid" value="#{lookupController.notesN}" var="note">
+                           <p:panel header="#{note.categoria.name}"  >
                             <h:panelGrid columns="2">
-                                <p:outputLabel value="#{nota.encabezado}"/>
-                                <p:outputLabel value="#{nota.cuerpo}"/>
-                                <p:inputTextarea value="#{nota.comentarioAdmin}" disabled="true"/>
-                                <p:rating value="#{nota.valorizacion}" readonly="true"/>                            
+                                <p:outputLabel value="#{note.header}"/>
+                                <p:outputLabel value="#{note.body}"/>
+                                <p:inputTextarea value="#{note.commentary}" disabled="true"/>
+                                <p:rating value="#{note.rating}" readonly="true"/>                            
                             </h:panelGrid>
                         </p:panel>
                     </p:dataGrid>

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.mycompany.model;
 
 import java.io.Serializable;
@@ -20,17 +19,19 @@ import org.omg.PortableInterceptor.ACTIVE;
  * @author PC
  */
 @Entity
-@Table(name="Category ")
-public class Category implements Serializable{
-@Id
+@Table(name = "Category ")
+public class Category implements Serializable {
 
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int code;
-    @Column(name="Name")
+    @Id
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Code")
+    private int code;
+    @Column(name = "Name")
     private String name;
-      @Column(name="StateC")
-    private boolean state=true;
-      
+    @Column(name = "StateC")
+    private boolean state = true;
+
     public int getCode() {
         return code;
     }
@@ -81,6 +82,5 @@ public class Category implements Serializable{
     public String toString() {
         return "Category{" + "code=" + code + '}';
     }
-    
- 
+
 }

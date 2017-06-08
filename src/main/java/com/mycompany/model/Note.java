@@ -29,29 +29,31 @@ public class Note {
      
       @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="Cod_Note")
     private int code;
       @ManyToOne
      @JoinColumn(name="Cod_Person",nullable=false)
     private Person person;
       @ManyToOne
       @JoinColumn(name="Cod_Category",nullable=false)
-    private Category categoria;
+    private Category category;
       
     @Column(name="Header")
     private String header;
         
     @Column(name="Body")
     private String body;
-         @Temporal(TemporalType.DATE)   
-     @Column(name="Date")
+    
+         @Temporal(TemporalType.TIMESTAMP)   
+     @Column(name="DateN",insertable = false)
         
-    private Date date;
+    private Date dates;
         
     @Column(name="Commentary")
     private String commentary;
     
     @Column(name="Rating")
-    private String rating;
+    private Integer rating;
     
     public int getCode() {
         return code;
@@ -70,11 +72,11 @@ public class Note {
     }
 
     public Category getCategoria() {
-        return categoria;
+        return category;
     }
 
     public void setCategoria(Category categoria) {
-        this.categoria = categoria;
+        this.category = categoria;
     }
 
     public String getHeader() {
@@ -94,11 +96,11 @@ public class Note {
     }
 
     public Date getDate() {
-        return date;
+        return dates;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.dates = date;
     }
 
     public String getCommentary() {
@@ -109,11 +111,11 @@ public class Note {
         this.commentary = commentary;
     }
 
-    public String getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 

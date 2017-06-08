@@ -68,6 +68,7 @@ public class Person implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="CodeP")
     private int codeP;
     
     @Column(name="Names")

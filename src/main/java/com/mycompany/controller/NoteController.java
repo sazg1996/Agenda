@@ -4,12 +4,14 @@ import com.mycompany.ejb.CategoryFacadeLocal;
 import com.mycompany.ejb.NoteFacadeLocal;
 import com.mycompany.model.Category;
 import com.mycompany.model.Note;
+import com.mycompany.model.User;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -23,10 +25,11 @@ import javax.inject.Named;
  * @author PC
  */
 @Named
-@ViewScoped
-public class NoteController {
+@RequestScoped
+public class NoteController implements Serializable {
 
     private List<Category> categories;
+
     @EJB
     private NoteFacadeLocal noteEJB;
     @EJB
@@ -38,7 +41,10 @@ public class NoteController {
 
     @PostConstruct
     public void init() {
-        categories = CategoryEJB.findAll();
+       if(!FacesContext.getCurrentInstance().isPostback())
+       {
+            categories = CategoryEJB.findAll();
+       }
     }
 
     public Category getCategory() {
@@ -57,13 +63,31 @@ public class NoteController {
         this.note = note;
     }
 
-    public void registrar() {
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public void asignar(Note nota) {
+        this.note = nota;
+    }
+
+    public void Registrar() {
 
         try {
+            User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+            note.setPerson(user.getCodeU());
+            note.setCategoria(category);
             noteEJB.create(note);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registró"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!"));
         }
     }
+
+
+
 }

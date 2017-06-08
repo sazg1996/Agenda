@@ -48,11 +48,12 @@ public class Telephone {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="Code")
      private int codeT;
      @Column(name="Number")
      private String number;
      @ManyToOne
-     @JoinColumn(name="Code_Person",nullable=false)
+     @JoinColumn(name="Cod_Pers",nullable=false)
      private Person code;
 
     @Override
